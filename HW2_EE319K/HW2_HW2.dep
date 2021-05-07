@@ -1,0 +1,7 @@
+Dependencies for Project 'HW2', Target 'HW2': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
+F (.\startup.s)(0x519ADEE4)(--cpu Cortex-M4 -g --apcs=interwork -I.\RTE\_HW2-IC:\Users\titob\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\titob\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 533" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1" --pd "_RTE_ SETA 1"--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\HW2.s)(0x6095A201)(--cpu Cortex-M4 -g --apcs=interwork -I.\RTE\_HW2-IC:\Users\titob\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\titob\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 533" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1" --pd "_RTE_ SETA 1"--list .\hw2.lst --xref -o .\hw2.o --depend .\hw2.d)
+F (.\main.o)(0x5C48F822)()
+F (.\uart.o)(0x5C48F820)()
+F (.\pll.o)(0x5C48F820)()
