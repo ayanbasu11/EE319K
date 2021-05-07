@@ -1,0 +1,6 @@
+Dependencies for Project 'HW4', Target 'HW4': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
+F (.\startup.s)(0x519ADEE4)(--cpu Cortex-M4 -g --apcs=interwork -I.\RTE\_HW4-IC:\Users\titob\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\titob\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 533" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1" --pd "_RTE_ SETA 1"--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\HW4.c)(0x6095A24D)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I .. -I ..\..\.. --C99-I.\RTE\_HW4-IC:\Users\titob\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\titob\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="533" -D_RTE_ -DTM4C123GH6PM -D_RTE_ -Drvmdk -DPART_LM4F120H5QR-o .\hw4.o --omf_browse .\hw4.crf --depend .\hw4.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8EF392)
+F (.\hw4grader.o)(0x5C491778)()
