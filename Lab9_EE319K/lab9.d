@@ -1,0 +1,9 @@
+.\lab9.o: Lab9.c
+.\lab9.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\lab9.o: SSD1306.h
+.\lab9.o: TExaS.h
+.\lab9.o: ADC.h
+.\lab9.o: print.h
+.\lab9.o: ../inc/tm4c123gh6pm.h
+.\lab9.o: UART1.h
+.\lab9.o: Fifo.h
