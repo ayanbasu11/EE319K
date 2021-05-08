@@ -1,0 +1,616 @@
+Component: ARM Compiler 5.06 update 7 (build 960) Tool: armlink [4d3601]
+
+==============================================================================
+
+Section Cross References
+
+    startup.o(RESET) refers to startup.o(STACK) for StackMem
+    startup.o(RESET) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    lab7main.o(i.main) refers to pll.o(i.PLL_Init) for PLL_Init
+    lab7main.o(i.main) refers to io.o(i.IO_Init) for IO_Init
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_Init) for SSD1306_Init
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_OutClear) for SSD1306_OutClear
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_DrawBMP) for SSD1306_DrawBMP
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_OutBuffer) for SSD1306_OutBuffer
+    lab7main.o(i.main) refers to io.o(i.IO_Touch) for IO_Touch
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_OutString) for SSD1306_OutString
+    lab7main.o(i.main) refers to io.o(i.IO_HeartBeat) for IO_HeartBeat
+    lab7main.o(i.main) refers to ssd1306.o(i.SSD1306_SetCursor) for SSD1306_SetCursor
+    lab7main.o(i.main) refers to print.o(.text) for LCD_OutDec
+    lab7main.o(i.main) refers to lab7main.o(.constdata) for logo
+    io.o(i.IO_HeartBeat) refers to cortexm.o(i.Clock_Delay1ms) for Clock_Delay1ms
+    ssd1306.o(i.SSD1306_ClearBuffer) refers to ssd1306.o(i.SSD1306_SetCursor) for SSD1306_SetCursor
+    ssd1306.o(i.SSD1306_ClearBuffer) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_Dim) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_Dim) refers to ssd1306.o(.data) for vccstate
+    ssd1306.o(i.SSD1306_DrawBMP) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_DrawChar) refers to ssd1306.o(i.SSD1306_DrawPixel) for SSD1306_DrawPixel
+    ssd1306.o(i.SSD1306_DrawChar) refers to ssd1306.o(.constdata) for ASCII
+    ssd1306.o(i.SSD1306_DrawFastHLine) refers to ssd1306.o(i.ssd1306drawFastVLineInternal) for ssd1306drawFastVLineInternal
+    ssd1306.o(i.SSD1306_DrawFastHLine) refers to ssd1306.o(i.ssd1306drawFastHLineInternal) for ssd1306drawFastHLineInternal
+    ssd1306.o(i.SSD1306_DrawFastHLine) refers to ssd1306.o(.data) for rotation
+    ssd1306.o(i.SSD1306_DrawFastVLine) refers to ssd1306.o(i.ssd1306drawFastHLineInternal) for ssd1306drawFastHLineInternal
+    ssd1306.o(i.SSD1306_DrawFastVLine) refers to ssd1306.o(i.ssd1306drawFastVLineInternal) for ssd1306drawFastVLineInternal
+    ssd1306.o(i.SSD1306_DrawFastVLine) refers to ssd1306.o(.data) for rotation
+    ssd1306.o(i.SSD1306_DrawFullImage) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_DrawFullImage) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_DrawFullImage) refers to i2c3.o(i.I2C3_SendData) for I2C3_SendData
+    ssd1306.o(i.SSD1306_DrawFullImage) refers to ssd1306.o(i.SSD1306_SetCursor) for SSD1306_SetCursor
+    ssd1306.o(i.SSD1306_DrawFullImage) refers to ssd1306.o(.constdata) for dlist1
+    ssd1306.o(i.SSD1306_DrawPixel) refers to ssd1306.o(.data) for rotation
+    ssd1306.o(i.SSD1306_DrawPixel) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_DrawPoint) refers to ssd1306.o(i.SSD1306_DrawPixel) for SSD1306_DrawPixel
+    ssd1306.o(i.SSD1306_DrawPoint) refers to ssd1306.o(.data) for MinX
+    ssd1306.o(i.SSD1306_DrawString) refers to ssd1306.o(i.SSD1306_DrawChar) for SSD1306_DrawChar
+    ssd1306.o(i.SSD1306_GetBuffer) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_GetPixel) refers to ssd1306.o(.data) for rotation
+    ssd1306.o(i.SSD1306_GetPixel) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_Init) refers to cortexm.o(i.Clock_Delay1ms) for Clock_Delay1ms
+    ssd1306.o(i.SSD1306_Init) refers to i2c3.o(i.I2C3_Init) for I2C3_Init
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(i.SSD1306_ClearBuffer) for SSD1306_ClearBuffer
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(i.SSD1306_OutBuffer) for SSD1306_OutBuffer
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(i.SSD1306_SetCursor) for SSD1306_SetCursor
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(.data) for vccstate
+    ssd1306.o(i.SSD1306_Init) refers to ssd1306.o(.constdata) for init1
+    ssd1306.o(i.SSD1306_InvertDisplay) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_OutBuffer) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_OutBuffer) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_OutBuffer) refers to i2c3.o(i.I2C3_SendData) for I2C3_SendData
+    ssd1306.o(i.SSD1306_OutBuffer) refers to ssd1306.o(.constdata) for dlist1
+    ssd1306.o(i.SSD1306_OutBuffer) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.SSD1306_OutChar) refers to ssd1306.o(i.ssd1306command) for ssd1306command
+    ssd1306.o(i.SSD1306_OutChar) refers to i2c3.o(i.I2C3_SendData) for I2C3_SendData
+    ssd1306.o(i.SSD1306_OutChar) refers to ssd1306.o(.data) for CurrentX
+    ssd1306.o(i.SSD1306_OutChar) refers to ssd1306.o(.constdata) for ASCII
+    ssd1306.o(i.SSD1306_OutClear) refers to ssd1306.o(i.SSD1306_ClearBuffer) for SSD1306_ClearBuffer
+    ssd1306.o(i.SSD1306_OutClear) refers to ssd1306.o(i.SSD1306_OutBuffer) for SSD1306_OutBuffer
+    ssd1306.o(i.SSD1306_OutHex7) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.SSD1306_OutSDec) refers to ssd1306.o(i.SSD1306_OutString) for SSD1306_OutString
+    ssd1306.o(i.SSD1306_OutSDec) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.SSD1306_OutSFix1) refers to ssd1306.o(i.SSD1306_OutString) for SSD1306_OutString
+    ssd1306.o(i.SSD1306_OutString) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.SSD1306_OutUDec16) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.SSD1306_OutUDec2) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.SSD1306_OutUFix1) refers to ssd1306.o(i.SSD1306_OutString) for SSD1306_OutString
+    ssd1306.o(i.SSD1306_OutUHex7) refers to ssd1306.o(i.SSD1306_OutString) for SSD1306_OutString
+    ssd1306.o(i.SSD1306_OutUHex7) refers to ssd1306.o(i.SSD1306_OutHex7) for SSD1306_OutHex7
+    ssd1306.o(i.SSD1306_SetCursor) refers to ssd1306.o(i.ssd1306command) for ssd1306command
+    ssd1306.o(i.SSD1306_SetCursor) refers to ssd1306.o(.data) for CurrentX
+    ssd1306.o(i.SSD1306_SetPlot) refers to ssd1306.o(.data) for MaxX
+    ssd1306.o(i.SSD1306_startscrolldiagleft) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_startscrolldiagleft) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_startscrolldiagleft) refers to ssd1306.o(.constdata) for scrollList4a
+    ssd1306.o(i.SSD1306_startscrolldiagright) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_startscrolldiagright) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_startscrolldiagright) refers to ssd1306.o(.constdata) for scrollList3a
+    ssd1306.o(i.SSD1306_startscrollleft) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_startscrollleft) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_startscrollleft) refers to ssd1306.o(.constdata) for scrollList2a
+    ssd1306.o(i.SSD1306_startscrollright) refers to ssd1306.o(i.ssd1306commandList) for ssd1306commandList
+    ssd1306.o(i.SSD1306_startscrollright) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.SSD1306_startscrollright) refers to ssd1306.o(.constdata) for scrollList1a
+    ssd1306.o(i.SSD1306_stopscroll) refers to ssd1306.o(i.ssd1306command1) for ssd1306command1
+    ssd1306.o(i.fputc) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    ssd1306.o(i.ssd1306command) refers to lcd.o(.text) for I2C_Send2
+    ssd1306.o(i.ssd1306command1) refers to lcd.o(.text) for I2C_Send2
+    ssd1306.o(i.ssd1306commandList) refers to i2c3.o(i.I2C3_Send) for I2C3_Send
+    ssd1306.o(i.ssd1306drawFastHLineInternal) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.ssd1306drawFastVLineInternal) refers to ssd1306.o(.bss) for buffer
+    ssd1306.o(i.ssd1306drawFastVLineInternal) refers to ssd1306.o(.constdata) for premask
+    print.o(.text) refers to ssd1306.o(i.SSD1306_OutChar) for SSD1306_OutChar
+    cortexm.o(i.Clock_Delay1ms) refers to cortexm.o(.emb_text) for Clock_Delay
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000F) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$00000011) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry12b.o(.ARM.Collect$$$$0000000E) for __rt_lib_shutdown_fini
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to lab7main.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to lab7main.o(i.main) for main
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup.o(HEAP), (0 bytes).
+    Removing startup.o(.text), (28 bytes).
+    Removing ssd1306.o(i.SSD1306_Dim), (44 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawChar), (104 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawFastHLine), (140 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawFastVLine), (140 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawFullImage), (44 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawPixel), (248 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawPoint), (124 bytes).
+    Removing ssd1306.o(i.SSD1306_DrawString), (38 bytes).
+    Removing ssd1306.o(i.SSD1306_GetBuffer), (8 bytes).
+    Removing ssd1306.o(i.SSD1306_GetPixel), (124 bytes).
+    Removing ssd1306.o(i.SSD1306_InvertDisplay), (20 bytes).
+    Removing ssd1306.o(i.SSD1306_OutHex7), (36 bytes).
+    Removing ssd1306.o(i.SSD1306_OutSDec), (440 bytes).
+    Removing ssd1306.o(i.SSD1306_OutSFix1), (208 bytes).
+    Removing ssd1306.o(i.SSD1306_OutUDec), (2 bytes).
+    Removing ssd1306.o(i.SSD1306_OutUDec16), (144 bytes).
+    Removing ssd1306.o(i.SSD1306_OutUDec2), (82 bytes).
+    Removing ssd1306.o(i.SSD1306_OutUFix1), (108 bytes).
+    Removing ssd1306.o(i.SSD1306_OutUHex7), (40 bytes).
+    Removing ssd1306.o(i.SSD1306_SetPlot), (104 bytes).
+    Removing ssd1306.o(i.SSD1306_startscrolldiagleft), (68 bytes).
+    Removing ssd1306.o(i.SSD1306_startscrolldiagright), (68 bytes).
+    Removing ssd1306.o(i.SSD1306_startscrollleft), (52 bytes).
+    Removing ssd1306.o(i.SSD1306_startscrollright), (52 bytes).
+    Removing ssd1306.o(i.SSD1306_stopscroll), (10 bytes).
+    Removing ssd1306.o(i.ferror), (8 bytes).
+    Removing ssd1306.o(i.fgetc), (6 bytes).
+    Removing ssd1306.o(i.fputc), (16 bytes).
+    Removing ssd1306.o(i.ssd1306drawFastHLineInternal), (164 bytes).
+    Removing ssd1306.o(i.ssd1306drawFastVLineInternal), (356 bytes).
+    Removing i2c3.o(i.I2C3_Recv), (276 bytes).
+    Removing i2c3.o(i.I2C3_Recv1), (88 bytes).
+    Removing i2c3.o(i.I2C3_Recv2), (120 bytes).
+    Removing i2c3.o(i.I2C3_Recv3), (116 bytes).
+    Removing i2c3.o(i.I2C3_Send1), (60 bytes).
+    Removing i2c3.o(i.I2C3_Send2), (112 bytes).
+    Removing i2c3.o(i.I2C3_Send4), (212 bytes).
+
+39 unused section(s) (total 4010 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      644  startup.o(RESET)
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ..\\inc\\CortexM.c                       0x00000000   Number         0  cortexm.o ABSOLUTE
+    ..\inc\CortexM.c                         0x00000000   Number         0  cortexm.o ABSOLUTE
+    I2C3.c                                   0x00000000   Number         0  i2c3.o ABSOLUTE
+    IO.c                                     0x00000000   Number         0  io.o ABSOLUTE
+    LCD.s                                    0x00000000   Number         0  lcd.o ABSOLUTE
+    Lab7Main.c                               0x00000000   Number         0  lab7main.o ABSOLUTE
+    PLL.c                                    0x00000000   Number         0  pll.o ABSOLUTE
+    Print.s                                  0x00000000   Number         0  print.o ABSOLUTE
+    SSD1306.c                                0x00000000   Number         0  ssd1306.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    startup.s                                0x00000000   Number         0  startup.o ABSOLUTE
+    .ARM.Collect$$$$00000000                 0x00000284   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x00000284   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x00000288   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x0000028c   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x0000028c   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x0000028c   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    .ARM.Collect$$$$0000000E                 0x00000294   Section        4  entry12b.o(.ARM.Collect$$$$0000000E)
+    .ARM.Collect$$$$0000000F                 0x00000298   Section        0  entry10a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00000011                 0x00000298   Section        0  entry11a.o(.ARM.Collect$$$$00000011)
+    .ARM.Collect$$$$00002712                 0x00000298   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x00000298   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .emb_text                                0x0000029c   Section        6  cortexm.o(.emb_text)
+    .text                                    0x000002a4   Section      148  lcd.o(.text)
+    .text                                    0x00000338   Section      196  print.o(.text)
+    .text                                    0x000003fc   Section       36  init.o(.text)
+    i.Clock_Delay1ms                         0x00000420   Section        0  cortexm.o(i.Clock_Delay1ms)
+    i.I2C3_Init                              0x00000438   Section        0  i2c3.o(i.I2C3_Init)
+    i.I2C3_Send                              0x000004e4   Section        0  i2c3.o(i.I2C3_Send)
+    i.I2C3_SendData                          0x000005c4   Section        0  i2c3.o(i.I2C3_SendData)
+    i.IO_HeartBeat                           0x00000640   Section        0  io.o(i.IO_HeartBeat)
+    i.IO_Init                                0x00000660   Section        0  io.o(i.IO_Init)
+    i.IO_Touch                               0x000006b4   Section        0  io.o(i.IO_Touch)
+    i.PLL_Init                               0x000006e4   Section        0  pll.o(i.PLL_Init)
+    i.SSD1306_ClearBuffer                    0x00000760   Section        0  ssd1306.o(i.SSD1306_ClearBuffer)
+    i.SSD1306_DrawBMP                        0x00000784   Section        0  ssd1306.o(i.SSD1306_DrawBMP)
+    i.SSD1306_Init                           0x0000099c   Section        0  ssd1306.o(i.SSD1306_Init)
+    i.SSD1306_OutBuffer                      0x00000a58   Section        0  ssd1306.o(i.SSD1306_OutBuffer)
+    i.SSD1306_OutChar                        0x00000a80   Section        0  ssd1306.o(i.SSD1306_OutChar)
+    i.SSD1306_OutClear                       0x00000b84   Section        0  ssd1306.o(i.SSD1306_OutClear)
+    i.SSD1306_OutString                      0x00000b90   Section        0  ssd1306.o(i.SSD1306_OutString)
+    i.SSD1306_SetCursor                      0x00000ba8   Section        0  ssd1306.o(i.SSD1306_SetCursor)
+    i.__scatterload_copy                     0x00000c18   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000c26   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000c28   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.main                                   0x00000c38   Section        0  lab7main.o(i.main)
+    i.ssd1306command                         0x00000d04   Section        0  ssd1306.o(i.ssd1306command)
+    i.ssd1306command1                        0x00000d14   Section        0  ssd1306.o(i.ssd1306command1)
+    i.ssd1306commandList                     0x00000d24   Section        0  ssd1306.o(i.ssd1306commandList)
+    .constdata                               0x00000d38   Section     7660  lab7main.o(.constdata)
+    .constdata                               0x00002b24   Section     1443  ssd1306.o(.constdata)
+    ASCII                                    0x00002b24   Data        1374  ssd1306.o(.constdata)
+    init1                                    0x00003082   Data           5  ssd1306.o(.constdata)
+    init2                                    0x00003087   Data           5  ssd1306.o(.constdata)
+    init3                                    0x0000308c   Data           5  ssd1306.o(.constdata)
+    init4b                                   0x00003091   Data           4  ssd1306.o(.constdata)
+    init5                                    0x00003095   Data           7  ssd1306.o(.constdata)
+    premask                                  0x0000309c   Data           8  ssd1306.o(.constdata)
+    postmask                                 0x000030a4   Data           8  ssd1306.o(.constdata)
+    dlist1                                   0x000030ac   Data           5  ssd1306.o(.constdata)
+    scrollList1a                             0x000030b1   Data           2  ssd1306.o(.constdata)
+    scrollList1b                             0x000030b3   Data           3  ssd1306.o(.constdata)
+    scrollList2a                             0x000030b6   Data           2  ssd1306.o(.constdata)
+    scrollList2b                             0x000030b8   Data           3  ssd1306.o(.constdata)
+    scrollList3a                             0x000030bb   Data           2  ssd1306.o(.constdata)
+    scrollList3b                             0x000030bd   Data           2  ssd1306.o(.constdata)
+    scrollList3c                             0x000030bf   Data           2  ssd1306.o(.constdata)
+    scrollList4a                             0x000030c1   Data           2  ssd1306.o(.constdata)
+    scrollList4b                             0x000030c3   Data           2  ssd1306.o(.constdata)
+    scrollList4c                             0x000030c5   Data           2  ssd1306.o(.constdata)
+    .data                                    0x20000000   Section       42  ssd1306.o(.data)
+    DeltaX                                   0x20000008   Data           4  ssd1306.o(.data)
+    MaxX                                     0x2000000c   Data           4  ssd1306.o(.data)
+    MinX                                     0x20000010   Data           4  ssd1306.o(.data)
+    DeltaY                                   0x20000014   Data           4  ssd1306.o(.data)
+    MaxY                                     0x20000018   Data           4  ssd1306.o(.data)
+    MinY                                     0x2000001c   Data           4  ssd1306.o(.data)
+    PlotColor                                0x20000020   Data           2  ssd1306.o(.data)
+    .bss                                     0x2000002c   Section     1024  ssd1306.o(.bss)
+    STACK                                    0x20000430   Section     1024  startup.o(STACK)
+    StackMem                                 0x20000430   Data           0  startup.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  lab7main.o ABSOLUTE
+    __Vectors                                0x00000000   Data           0  startup.o(RESET)
+    __arm_fini_                               - Undefined Weak Reference
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    Reset_Handler                            0x0000026d   Thumb Code     0  startup.o(RESET)
+    NMI_Handler                              0x00000271   Thumb Code     2  startup.o(RESET)
+    HardFault_Handler                        0x00000273   Thumb Code     2  startup.o(RESET)
+    MemManage_Handler                        0x00000275   Thumb Code     2  startup.o(RESET)
+    BusFault_Handler                         0x00000277   Thumb Code     2  startup.o(RESET)
+    UsageFault_Handler                       0x00000279   Thumb Code     2  startup.o(RESET)
+    SVC_Handler                              0x0000027b   Thumb Code     2  startup.o(RESET)
+    DebugMon_Handler                         0x0000027d   Thumb Code     2  startup.o(RESET)
+    PendSV_Handler                           0x0000027f   Thumb Code     2  startup.o(RESET)
+    SysTick_Handler                          0x00000281   Thumb Code     2  startup.o(RESET)
+    ADC0Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC0Seq3_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ADC1Seq3_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    CAN2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp1_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Comp2_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    Ethernet_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    ExtBus_Handler                           0x00000283   Thumb Code     0  startup.o(RESET)
+    FPU_Handler                              0x00000283   Thumb Code     0  startup.o(RESET)
+    Fan0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    FlashCtl_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortA_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortB_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortC_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortD_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortE_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortF_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortG_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortH_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortJ_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortK_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortL_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortM_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortN_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP1_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP2_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP3_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP4_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP5_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP6_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP7_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortP_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ1_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ2_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ3_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ4_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ5_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ6_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ7_Handler                       0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortQ_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortR_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    GPIOPortS_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    Hibernate_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C3_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C4_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2C5_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    I2S0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    LPC0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    PECI0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Fault_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator0_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator1_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator2_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM0Generator3_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Fault_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator0_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator1_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator2_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    PWM1Generator3_Handler                   0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature0_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature1_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    Quadrature2_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI1_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI2_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SSI3_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    SysCtl_Handler                           0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer0A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer0B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer1A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer1B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer2A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer2B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer3A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer3B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer4A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer4B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer5A_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    Timer5B_Handler                          0x00000283   Thumb Code     0  startup.o(RESET)
+    UART0_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART1_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART2_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART3_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART4_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART5_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART6_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    UART7_Handler                            0x00000283   Thumb Code     0  startup.o(RESET)
+    USB0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    WDT_Handler                              0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer0A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer0B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer1A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer1B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer2A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer2B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer3A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer3B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer4A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer4B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer5A_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    WideTimer5B_Handler                      0x00000283   Thumb Code     0  startup.o(RESET)
+    uDMA_Error                               0x00000283   Thumb Code     0  startup.o(RESET)
+    uDMA_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
+    __main                                   0x00000285   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x00000285   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x00000289   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x0000028d   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x0000028d   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x0000028d   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x0000028d   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_lib_shutdown_fini                   0x00000295   Thumb Code     0  entry12b.o(.ARM.Collect$$$$0000000E)
+    __rt_final_cpp                           0x00000299   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000F)
+    __rt_final_exit                          0x00000299   Thumb Code     0  entry11a.o(.ARM.Collect$$$$00000011)
+    Clock_Delay                              0x0000029d   Thumb Code     6  cortexm.o(.emb_text)
+    I2C_Send2                                0x000002a5   Thumb Code     0  lcd.o(.text)
+    LCD_OutDec                               0x00000339   Thumb Code     0  print.o(.text)
+    LCD_OutFix                               0x00000367   Thumb Code     0  print.o(.text)
+    __scatterload                            0x000003fd   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x000003fd   Thumb Code     0  init.o(.text)
+    Clock_Delay1ms                           0x00000421   Thumb Code    22  cortexm.o(i.Clock_Delay1ms)
+    I2C3_Init                                0x00000439   Thumb Code   152  i2c3.o(i.I2C3_Init)
+    I2C3_Send                                0x000004e5   Thumb Code   220  i2c3.o(i.I2C3_Send)
+    I2C3_SendData                            0x000005c5   Thumb Code   118  i2c3.o(i.I2C3_SendData)
+    IO_HeartBeat                             0x00000641   Thumb Code    24  io.o(i.IO_HeartBeat)
+    IO_Init                                  0x00000661   Thumb Code    72  io.o(i.IO_Init)
+    IO_Touch                                 0x000006b5   Thumb Code    40  io.o(i.IO_Touch)
+    PLL_Init                                 0x000006e5   Thumb Code   120  pll.o(i.PLL_Init)
+    SSD1306_ClearBuffer                      0x00000761   Thumb Code    30  ssd1306.o(i.SSD1306_ClearBuffer)
+    SSD1306_DrawBMP                          0x00000785   Thumb Code   532  ssd1306.o(i.SSD1306_DrawBMP)
+    SSD1306_Init                             0x0000099d   Thumb Code   158  ssd1306.o(i.SSD1306_Init)
+    SSD1306_OutBuffer                        0x00000a59   Thumb Code    30  ssd1306.o(i.SSD1306_OutBuffer)
+    SSD1306_OutChar                          0x00000a81   Thumb Code   238  ssd1306.o(i.SSD1306_OutChar)
+    SSD1306_OutClear                         0x00000b85   Thumb Code    12  ssd1306.o(i.SSD1306_OutClear)
+    SSD1306_OutString                        0x00000b91   Thumb Code    24  ssd1306.o(i.SSD1306_OutString)
+    SSD1306_SetCursor                        0x00000ba9   Thumb Code    94  ssd1306.o(i.SSD1306_SetCursor)
+    __scatterload_copy                       0x00000c19   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000c27   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000c29   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    main                                     0x00000c39   Thumb Code   140  lab7main.o(i.main)
+    ssd1306command                           0x00000d05   Thumb Code    16  ssd1306.o(i.ssd1306command)
+    ssd1306command1                          0x00000d15   Thumb Code    16  ssd1306.o(i.ssd1306command1)
+    ssd1306commandList                       0x00000d25   Thumb Code    18  ssd1306.o(i.ssd1306commandList)
+    cal                                      0x00000d38   Data        2679  lab7main.o(.constdata)
+    ti                                       0x000017af   Data        1271  lab7main.o(.constdata)
+    checker                                  0x00001ca6   Data        1024  lab7main.o(.constdata)
+    SmallEnemy                               0x000020a6   Data         199  lab7main.o(.constdata)
+    logo                                     0x0000216d   Data        2423  lab7main.o(.constdata)
+    TestData                                 0x00002ae4   Data          64  lab7main.o(.constdata)
+    Region$$Table$$Base                      0x000030c8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000030e8   Number         0  anon$$obj.o(Region$$Table)
+    vccstate                                 0x20000000   Data           4  ssd1306.o(.data)
+    rotation                                 0x20000004   Data           4  ssd1306.o(.data)
+    StartX                                   0x20000022   Data           2  ssd1306.o(.data)
+    CurrentX                                 0x20000024   Data           2  ssd1306.o(.data)
+    StartY                                   0x20000026   Data           2  ssd1306.o(.data)
+    CurrentY                                 0x20000028   Data           2  ssd1306.o(.data)
+    buffer                                   0x2000002c   Data        1024  ssd1306.o(.bss)
+    __initial_sp                             0x20000830   Data           0  startup.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x0000026d
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00003114, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000030e8, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
+    0x00000284   0x00000284   0x00000000   Code   RO          446  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000284   0x00000284   0x00000004   Code   RO          449    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000288   0x00000288   0x00000004   Code   RO          452    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0000028c   0x0000028c   0x00000000   Code   RO          454    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0000028c   0x0000028c   0x00000000   Code   RO          456    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0000028c   0x0000028c   0x00000008   Code   RO          457    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000294   0x00000294   0x00000004   Code   RO          464    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x00000298   0x00000298   0x00000000   Code   RO          459    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x00000298   0x00000298   0x00000000   Code   RO          461    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x00000298   0x00000298   0x00000004   Code   RO          450    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x0000029c   0x0000029c   0x00000006   Code   RO          430    .emb_text           cortexm.o
+    0x000002a2   0x000002a2   0x00000002   PAD
+    0x000002a4   0x000002a4   0x00000094   Code   RO          424    .text               lcd.o
+    0x00000338   0x00000338   0x000000c4   Code   RO          427    .text               print.o
+    0x000003fc   0x000003fc   0x00000024   Code   RO          465    .text               mc_w.l(init.o)
+    0x00000420   0x00000420   0x00000016   Code   RO          431    i.Clock_Delay1ms    cortexm.o
+    0x00000436   0x00000436   0x00000002   PAD
+    0x00000438   0x00000438   0x000000ac   Code   RO          355    i.I2C3_Init         i2c3.o
+    0x000004e4   0x000004e4   0x000000e0   Code   RO          360    i.I2C3_Send         i2c3.o
+    0x000005c4   0x000005c4   0x0000007c   Code   RO          364    i.I2C3_SendData     i2c3.o
+    0x00000640   0x00000640   0x00000020   Code   RO           53    i.IO_HeartBeat      io.o
+    0x00000660   0x00000660   0x00000054   Code   RO           54    i.IO_Init           io.o
+    0x000006b4   0x000006b4   0x00000030   Code   RO           55    i.IO_Touch          io.o
+    0x000006e4   0x000006e4   0x0000007c   Code   RO          343    i.PLL_Init          pll.o
+    0x00000760   0x00000760   0x00000024   Code   RO           80    i.SSD1306_ClearBuffer  ssd1306.o
+    0x00000784   0x00000784   0x00000218   Code   RO           82    i.SSD1306_DrawBMP   ssd1306.o
+    0x0000099c   0x0000099c   0x000000bc   Code   RO           92    i.SSD1306_Init      ssd1306.o
+    0x00000a58   0x00000a58   0x00000028   Code   RO           94    i.SSD1306_OutBuffer  ssd1306.o
+    0x00000a80   0x00000a80   0x00000104   Code   RO           95    i.SSD1306_OutChar   ssd1306.o
+    0x00000b84   0x00000b84   0x0000000c   Code   RO           96    i.SSD1306_OutClear  ssd1306.o
+    0x00000b90   0x00000b90   0x00000018   Code   RO          100    i.SSD1306_OutString  ssd1306.o
+    0x00000ba8   0x00000ba8   0x00000070   Code   RO          106    i.SSD1306_SetCursor  ssd1306.o
+    0x00000c18   0x00000c18   0x0000000e   Code   RO          469    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000c26   0x00000c26   0x00000002   Code   RO          470    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000c28   0x00000c28   0x0000000e   Code   RO          471    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000c36   0x00000c36   0x00000002   PAD
+    0x00000c38   0x00000c38   0x000000cc   Code   RO           12    i.main              lab7main.o
+    0x00000d04   0x00000d04   0x00000010   Code   RO          116    i.ssd1306command    ssd1306.o
+    0x00000d14   0x00000d14   0x00000010   Code   RO          117    i.ssd1306command1   ssd1306.o
+    0x00000d24   0x00000d24   0x00000012   Code   RO          118    i.ssd1306commandList  ssd1306.o
+    0x00000d36   0x00000d36   0x00000002   PAD
+    0x00000d38   0x00000d38   0x00001dec   Data   RO           13    .constdata          lab7main.o
+    0x00002b24   0x00002b24   0x000005a3   Data   RO          122    .constdata          ssd1306.o
+    0x000030c7   0x000030c7   0x00000001   PAD
+    0x000030c8   0x000030c8   0x00000020   Data   RO          467    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x000030e8, Size: 0x0000002c, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x000030e8   0x0000002a   Data   RW          123    .data               ssd1306.o
+
+
+    Execution Region ER_ZI (Exec base: 0x2000002c, Load base: 0x00003114, Size: 0x00000804, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x2000002c        -       0x00000400   Zero   RW          121    .bss                ssd1306.o
+    0x2000042c   0x00003114   0x00000004   PAD
+    0x20000430        -       0x00000400   Zero   RW            1    STACK               startup.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+        28          0          0          0          0        817   cortexm.o
+       520         30          0          0          0       2528   i2c3.o
+       164         28          0          0          0       1668   io.o
+       204         64       7660          0          0       6169   lab7main.o
+       148         14          0          0          0        264   lcd.o
+       124          4          0          0          0        451   pll.o
+       196          2          0          0          0        276   print.o
+      1258         90       1443         42       1024       8895   ssd1306.o
+       644        620          0          0       1024        736   startup.o
+
+    ----------------------------------------------------------------------
+      3292        852       9136         44       2052      21804   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+         6          0          1          2          4          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         4          0          0          0          0          0   entry12b.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        36          8          0          0          0         68   init.o
+
+    ----------------------------------------------------------------------
+        92         16          0          0          0         68   Library Totals
+         2          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+        90         16          0          0          0         68   mc_w.l
+
+    ----------------------------------------------------------------------
+        92         16          0          0          0         68   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      3384        868       9136         44       2052      21088   Grand Totals
+      3384        868       9136         44       2052      21088   ELF Image Totals
+      3384        868       9136         44          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                12520 (  12.23kB)
+    Total RW  Size (RW Data + ZI Data)              2096 (   2.05kB)
+    Total ROM Size (Code + RO Data + RW Data)      12564 (  12.27kB)
+
+==============================================================================
+

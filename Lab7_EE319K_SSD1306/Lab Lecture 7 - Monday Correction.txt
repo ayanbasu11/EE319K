@@ -1,0 +1,2 @@
+You cannot always assume that the first local variable is an offset of 0.
+The offset will depend on how the code is implemented.
