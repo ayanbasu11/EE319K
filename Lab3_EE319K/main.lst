@@ -1,0 +1,643 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;****************** main.s ***************
+    2 00000000         ; Program written by: Ayan Basu & Ayush Roychowdhury
+    3 00000000         ; Date Created: 2/4/2017
+    4 00000000         ; Last Modified: 1/17/2021
+    5 00000000         ; Brief description of the program
+    6 00000000         ;   The LED toggles at 2 Hz and a varying duty-cycle
+    7 00000000         ; Hardware connections (External: One button and one LED
+                       )
+    8 00000000         ;  PE1 is Button input  (1 means pressed, 0 means not pr
+                       essed)
+    9 00000000         ;  PE2 is LED output (1 activates external LED on protob
+                       oard)
+   10 00000000         ;  PF4 is builtin button SW1 on Launchpad (Internal) 
+   11 00000000         ;        Negative Logic (0 means pressed, 1 means not pr
+                       essed)
+   12 00000000         ; Overall functionality of this system is to operate lik
+                       e this
+   13 00000000         ;   1) Make PE2 an output and make PE1 and PF4 inputs.
+   14 00000000         ;   2) The system starts with the the LED toggling at 2H
+                       z,
+   15 00000000         ;      which is 2 times per second with a duty-cycle of 
+                       30%.
+   16 00000000         ;      Therefore, the LED is ON for 150ms and off for 35
+                       0 ms.
+   17 00000000         ;   3) When the button (PE1) is pressed-and-released inc
+                       rease
+   18 00000000         ;      the duty cycle by 20% (modulo 100%). Therefore fo
+                       r each
+   19 00000000         ;      press-and-release the duty cycle changes from 30%
+                        to 70% to 70%
+   20 00000000         ;      to 90% to 10% to 30% so on
+   21 00000000         ;   4) Implement a "breathing LED" when SW1 (PF4) on the
+                        Launchpad is pressed:
+   22 00000000         ;      a) Be creative and play around with what "breathi
+                       ng" means.
+   23 00000000         ;         An example of "breathing" is most computers po
+                       wer LED in sleep mode
+   24 00000000         ;         (e.g., https://www.youtube.com/watch?v=ZT6siXy
+                       IjvQ).
+   25 00000000         ;      b) When (PF4) is released while in breathing mode
+                       , resume blinking at 2Hz.
+   26 00000000         ;         The duty cycle can either match the most recen
+                       t duty-
+   27 00000000         ;         cycle or reset to 30%.
+   28 00000000         ;      TIP: debugging the breathing LED algorithm using 
+                       the real board.
+   29 00000000         ; PortE device registers
+   30 00000000 400243FC 
+                       GPIO_PORTE_DATA_R
+                               EQU              0x400243FC
+   31 00000000 40024400 
+                       GPIO_PORTE_DIR_R
+                               EQU              0x40024400
+   32 00000000 40024420 
+                       GPIO_PORTE_AFSEL_R
+                               EQU              0x40024420
+   33 00000000 4002451C 
+                       GPIO_PORTE_DEN_R
+                               EQU              0x4002451C
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   34 00000000         ; PortF device registers
+   35 00000000 400253FC 
+                       GPIO_PORTF_DATA_R
+                               EQU              0x400253FC
+   36 00000000 40025400 
+                       GPIO_PORTF_DIR_R
+                               EQU              0x40025400
+   37 00000000 40025420 
+                       GPIO_PORTF_AFSEL_R
+                               EQU              0x40025420
+   38 00000000 40025510 
+                       GPIO_PORTF_PUR_R
+                               EQU              0x40025510
+   39 00000000 4002551C 
+                       GPIO_PORTF_DEN_R
+                               EQU              0x4002551C
+   40 00000000 40025520 
+                       GPIO_PORTF_LOCK_R
+                               EQU              0x40025520
+   41 00000000 40025524 
+                       GPIO_PORTF_CR_R
+                               EQU              0x40025524
+   42 00000000 4C4F434B 
+                       GPIO_LOCK_KEY
+                               EQU              0x4C4F434B  ; Unlocks the GPIO_
+                                                            CR register
+   43 00000000 400FE608 
+                       SYSCTL_RCGCGPIO_R
+                               EQU              0x400FE608
+   44 00000000         
+   45 00000000                 IMPORT           TExaS_Init
+   46 00000000                 THUMB
+   47 00000000                 AREA             DATA, ALIGN=2
+   48 00000000         ;global variables go here
+   49 00000000         
+   50 00000000         
+   51 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+   52 00000000                 THUMB
+   53 00000000         
+   54 00000000                 EXPORT           Start
+   55 00000000         
+   56 00000000         Start
+   57 00000000         ;  PE1 is Button input  (1 means pressed, 0 means not pr
+                       essed)
+   58 00000000         ;  PE2 is LED output (1 activates external LED on protob
+                       oard)
+   59 00000000         ;  PF4 is builtin button SW1 on Launchpad (Internal)
+   60 00000000 484C            LDR              R0, =SYSCTL_RCGCGPIO_R
+   61 00000002 7801            LDRB             R1, [R0]
+   62 00000004 F041 0130       ORR              R1, #0x30
+   63 00000008 7001            STRB             R1, [R0]
+   64 0000000A         
+   65 0000000A BF00            NOP
+   66 0000000C BF00            NOP
+   67 0000000E         
+   68 0000000E 484A            LDR              R0, =GPIO_PORTE_DIR_R
+   69 00000010 7801            LDRB             R1, [R0]
+   70 00000012 F001 01FD       AND              R1, #0xFD
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   71 00000016 F041 0104       ORR              R1, #0x04
+   72 0000001A 7001            STRB             R1, [R0]
+   73 0000001C         
+   74 0000001C 4847            LDR              R0, =GPIO_PORTE_DEN_R
+   75 0000001E 7801            LDRB             R1, [R0]
+   76 00000020 F041 0106       ORR              R1, #0x06
+   77 00000024 7001            STRB             R1, [R0]
+   78 00000026         
+   79 00000026 4846            LDR              R0, =GPIO_PORTF_DIR_R
+   80 00000028 7801            LDRB             R1, [R0]
+   81 0000002A F001 01FF       AND              R1, #0xFF
+   82 0000002E 7001            STRB             R1, [R0]
+   83 00000030         
+   84 00000030 4844            LDR              R0, =GPIO_PORTF_DEN_R
+   85 00000032 7801            LDRB             R1, [R0]
+   86 00000034 F041 0110       ORR              R1, #0x10
+   87 00000038 7001            STRB             R1, [R0]
+   88 0000003A         
+   89 0000003A 4843            LDR              R0, =GPIO_PORTF_PUR_R
+   90 0000003C 6801            LDR              R1, [R0]
+   91 0000003E F041 0110       ORR              R1, #0x10
+   92 00000042 6001            STR              R1, [R0]
+   93 00000044         
+   94 00000044 F7FF FFFE       BL               TExaS_Init
+   95 00000048         
+   96 00000048 F04F 0196       LDR              R1, =150
+   97 0000004C         
+   98 0000004C         ;breathe algorithm - 10% - 30% - 50%
+   99 0000004C         ; voltmeter, scope on PD3
+  100 0000004C         ; Initialization goes here
+  101 0000004C         
+  102 0000004C         
+  103 0000004C B662            CPSIE            I           ; TExaS voltmeter, 
+                                                            scope runs on inter
+                                                            rupts
+  104 0000004E         loop
+  105 0000004E 4A3F            LDR              R2, =GPIO_PORTE_DATA_R
+  106 00000050 6813            LDR              R3, [R2]
+  107 00000052 F003 0402       AND              R4, R3, #0x02 ;PE1 Isolated: Po
+                                                            ssible Values -
+  108 00000056 4F3E            LDR              R7, =GPIO_PORTF_DATA_R
+  109 00000058 F8D7 8000       LDR              R8, [R7]
+  110 0000005C F008 0910       AND              R9, R8, #0x10
+  111 00000060         
+  112 00000060         check_for_pf4_press
+  113 00000060 B406            PUSH             {R1, R2}
+  114 00000062 F1B9 0F10       CMP              R9, #0x10
+  115 00000066 D101            BNE              breathe
+  116 00000068 BC06            POP              {R1, R2}
+  117 0000006A D025            BEQ              check_for_button_press
+  118 0000006C         
+  119 0000006C         breathe
+  120 0000006C F000 F849       BL               LED_ON
+  121 00000070 F000 F855       BL               delay_for_R1ms
+  122 00000074 F000 F84C       BL               LED_OFF
+  123 00000078 F44F 72FA       LDR              R2, =500
+  124 0000007C 1A51            SUBS             R1, R2, R1
+  125 0000007E F000 F84E       BL               delay_for_R1ms
+  126 00000082 F1B9 0F10       CMP              R9, #0x10
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+  127 00000086 D002            BEQ              breathe_increment
+  128 00000088 D116            BNE              check_for_button_press
+  129 0000008A F000 F800       BL               breathe_increment
+  130 0000008E         
+  131 0000008E         breathe_increment
+  132 0000008E F44F 76E1       LDR              R6, =450
+  133 00000092 1A75            SUBS             R5, R6, R1
+  134 00000094 2D00            CMP              R5, #0x0
+  135 00000096 D005            BEQ              breathe_decrement
+  136 00000098 F101 0164       ADD              R1, R1, #100
+  137 0000009C F1B9 0F10       CMP              R9, #0x10
+  138 000000A0 D0E4            BEQ              breathe
+  139 000000A2 D109            BNE              check_for_button_press
+  140 000000A4         
+  141 000000A4         breathe_decrement
+  142 000000A4 F04F 0632       LDR              R6, =50
+  143 000000A8 1B8D            SUBS             R5, R1, R6
+  144 000000AA 2D00            CMP              R5, #0x0
+  145 000000AC D0EF            BEQ              breathe_increment
+  146 000000AE 3964            SUBS             R1, R1, #100
+  147 000000B0 F1B9 0F10       CMP              R9, #0x10
+  148 000000B4 D0DA            BEQ              breathe
+  149 000000B6 D1FF            BNE              check_for_button_press
+  150 000000B8         
+  151 000000B8         
+  152 000000B8         check_for_button_press
+  153 000000B8 2C02            CMP              R4, #0x02
+  154 000000BA D000            BEQ              check_for_release
+  155 000000BC D113            BNE              duty_cycle
+  156 000000BE         
+  157 000000BE         check_for_release
+  158 000000BE 4A23            LDR              R2, =GPIO_PORTE_DATA_R
+  159 000000C0 6813            LDR              R3, [R2]
+  160 000000C2 F003 0402       AND              R4, R3, #0x02 ;PE1 Isolated: Po
+                                                            ssible Values - 
+  161 000000C6 2C00            CMP              R4,#0x0
+  162 000000C8 D000            BEQ              increment_duty_cycle
+  163 000000CA D1F5            BNE              check_for_button_press
+  164 000000CC         
+  165 000000CC         increment_duty_cycle
+  166 000000CC F44F 76E1       LDR              R6, =450
+  167 000000D0 1A75            SUBS             R5, R6, R1
+  168 000000D2 2D00            CMP              R5, #0x0
+  169 000000D4 D003            BEQ              change_to_tenpercent
+  170 000000D6 F101 0164       ADD              R1, R1, #100
+  171 000000DA F000 F804       BL               duty_cycle
+  172 000000DE         
+  173 000000DE         change_to_tenpercent
+  174 000000DE F04F 0132       LDR              R1, =50
+  175 000000E2 F000 F800       BL               duty_cycle
+  176 000000E6         
+  177 000000E6         duty_cycle
+  178 000000E6 B403            PUSH             {R0, R1}
+  179 000000E8 F000 F80B       BL               LED_ON
+  180 000000EC F000 F817       BL               delay_for_R1ms
+  181 000000F0 F000 F80E       BL               LED_OFF
+  182 000000F4 F44F 72FA       LDR              R2, =500
+  183 000000F8 1A51            SUBS             R1, R2, R1
+  184 000000FA F000 F810       BL               delay_for_R1ms
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+  185 000000FE BC03            POP              {R0, R1}
+  186 00000100 E7A5            B                loop
+  187 00000102         
+  188 00000102         LED_ON                               ;
+  189 00000102 B40C            PUSH             {R2, R3}
+  190 00000104 4A11            LDR              R2, =GPIO_PORTE_DATA_R
+  191 00000106 F043 0304       ORR              R3, R3, #0x04 ; LED ON
+  192 0000010A 7013            STRB             R3, [R2]
+  193 0000010C BC0C            POP              {R2, R3}
+  194 0000010E         
+  195 0000010E 4770            BX               LR
+  196 00000110         
+  197 00000110         LED_OFF
+  198 00000110 B40C            PUSH             {R2, R3}
+  199 00000112 4A0E            LDR              R2, =GPIO_PORTE_DATA_R
+  200 00000114 F023 0304       BIC              R3, R3, #0x04
+  201 00000118 7013            STRB             R3, [R2]
+  202 0000011A BC0C            POP              {R2, R3}
+  203 0000011C 4770            BX               LR
+  204 0000011E         
+  205 0000011E         delay_for_R1ms
+  206 0000011E B403            PUSH             {R0, R1}
+  207 00000120         loop_1
+  208 00000120 F644 6020       LDR              R0, =80000/4
+  209 00000124         loop_2
+  210 00000124 1E40            SUBS             R0, R0, #1
+  211 00000126 D1FD            BNE              loop_2
+  212 00000128 1E49            SUBS             R1, R1, #1
+  213 0000012A D1F9            BNE              loop_1
+  214 0000012C BC03            POP              {R0, R1}
+  215 0000012E 4770            BX               LR
+  216 00000130         
+  217 00000130         
+  218 00000130 E78D            B                loop
+  219 00000132         
+  220 00000132         
+  221 00000132         
+  222 00000132 00 00           ALIGN                        ; make sure the end
+                                                             of this section is
+                                                             aligned
+  223 00000134                 END                          ; end of file
+              400FE608 
+              40024400 
+              4002451C 
+              40025400 
+              4002551C 
+              40025510 
+              400243FC 
+              400253FC 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4 --apcs=interw
+ork --depend=.\main.d -o.\main.o -I.\RTE\_Lab3 -IC:\Users\titob\AppData\Local\A
+rm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include -IC:\Users\titob\AppData\Local\Arm\
+Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123 --predefine="__EVAL SETA 1" --
+predefine="__UVISION_VERSION SETA 533" --predefine="_RTE_ SETA 1" --predefine="
+TM4C123GH6PM SETA 1" --predefine="_RTE_ SETA 1" --list=.\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATA 00000000
+
+Symbol: DATA
+   Definitions
+      At line 47 in file main.s
+   Uses
+      None
+Comment: DATA unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 51 in file main.s
+   Uses
+      None
+Comment: .text unused
+LED_OFF 00000110
+
+Symbol: LED_OFF
+   Definitions
+      At line 197 in file main.s
+   Uses
+      At line 122 in file main.s
+      At line 181 in file main.s
+
+LED_ON 00000102
+
+Symbol: LED_ON
+   Definitions
+      At line 188 in file main.s
+   Uses
+      At line 120 in file main.s
+      At line 179 in file main.s
+
+Start 00000000
+
+Symbol: Start
+   Definitions
+      At line 56 in file main.s
+   Uses
+      At line 54 in file main.s
+Comment: Start used once
+breathe 0000006C
+
+Symbol: breathe
+   Definitions
+      At line 119 in file main.s
+   Uses
+      At line 115 in file main.s
+      At line 138 in file main.s
+      At line 148 in file main.s
+
+breathe_decrement 000000A4
+
+Symbol: breathe_decrement
+   Definitions
+      At line 141 in file main.s
+   Uses
+      At line 135 in file main.s
+Comment: breathe_decrement used once
+breathe_increment 0000008E
+
+Symbol: breathe_increment
+   Definitions
+      At line 131 in file main.s
+   Uses
+      At line 127 in file main.s
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 129 in file main.s
+      At line 145 in file main.s
+
+change_to_tenpercent 000000DE
+
+Symbol: change_to_tenpercent
+   Definitions
+      At line 173 in file main.s
+   Uses
+      At line 169 in file main.s
+Comment: change_to_tenpercent used once
+check_for_button_press 000000B8
+
+Symbol: check_for_button_press
+   Definitions
+      At line 152 in file main.s
+   Uses
+      At line 117 in file main.s
+      At line 128 in file main.s
+      At line 139 in file main.s
+      At line 149 in file main.s
+      At line 163 in file main.s
+
+check_for_pf4_press 00000060
+
+Symbol: check_for_pf4_press
+   Definitions
+      At line 112 in file main.s
+   Uses
+      None
+Comment: check_for_pf4_press unused
+check_for_release 000000BE
+
+Symbol: check_for_release
+   Definitions
+      At line 157 in file main.s
+   Uses
+      At line 154 in file main.s
+Comment: check_for_release used once
+delay_for_R1ms 0000011E
+
+Symbol: delay_for_R1ms
+   Definitions
+      At line 205 in file main.s
+   Uses
+      At line 121 in file main.s
+      At line 125 in file main.s
+      At line 180 in file main.s
+      At line 184 in file main.s
+
+duty_cycle 000000E6
+
+Symbol: duty_cycle
+   Definitions
+      At line 177 in file main.s
+   Uses
+      At line 155 in file main.s
+      At line 171 in file main.s
+      At line 175 in file main.s
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
+
+increment_duty_cycle 000000CC
+
+Symbol: increment_duty_cycle
+   Definitions
+      At line 165 in file main.s
+   Uses
+      At line 162 in file main.s
+Comment: increment_duty_cycle used once
+loop 0000004E
+
+Symbol: loop
+   Definitions
+      At line 104 in file main.s
+   Uses
+      At line 186 in file main.s
+      At line 218 in file main.s
+
+loop_1 00000120
+
+Symbol: loop_1
+   Definitions
+      At line 207 in file main.s
+   Uses
+      At line 213 in file main.s
+Comment: loop_1 used once
+loop_2 00000124
+
+Symbol: loop_2
+   Definitions
+      At line 209 in file main.s
+   Uses
+      At line 211 in file main.s
+Comment: loop_2 used once
+17 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+GPIO_LOCK_KEY 4C4F434B
+
+Symbol: GPIO_LOCK_KEY
+   Definitions
+      At line 42 in file main.s
+   Uses
+      None
+Comment: GPIO_LOCK_KEY unused
+GPIO_PORTE_AFSEL_R 40024420
+
+Symbol: GPIO_PORTE_AFSEL_R
+   Definitions
+      At line 32 in file main.s
+   Uses
+      None
+Comment: GPIO_PORTE_AFSEL_R unused
+GPIO_PORTE_DATA_R 400243FC
+
+Symbol: GPIO_PORTE_DATA_R
+   Definitions
+      At line 30 in file main.s
+   Uses
+      At line 105 in file main.s
+      At line 158 in file main.s
+      At line 190 in file main.s
+      At line 199 in file main.s
+
+GPIO_PORTE_DEN_R 4002451C
+
+Symbol: GPIO_PORTE_DEN_R
+   Definitions
+      At line 33 in file main.s
+   Uses
+      At line 74 in file main.s
+Comment: GPIO_PORTE_DEN_R used once
+GPIO_PORTE_DIR_R 40024400
+
+Symbol: GPIO_PORTE_DIR_R
+   Definitions
+      At line 31 in file main.s
+   Uses
+      At line 68 in file main.s
+Comment: GPIO_PORTE_DIR_R used once
+GPIO_PORTF_AFSEL_R 40025420
+
+Symbol: GPIO_PORTF_AFSEL_R
+   Definitions
+      At line 37 in file main.s
+   Uses
+      None
+Comment: GPIO_PORTF_AFSEL_R unused
+GPIO_PORTF_CR_R 40025524
+
+Symbol: GPIO_PORTF_CR_R
+   Definitions
+      At line 41 in file main.s
+   Uses
+      None
+Comment: GPIO_PORTF_CR_R unused
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+GPIO_PORTF_DATA_R 400253FC
+
+Symbol: GPIO_PORTF_DATA_R
+   Definitions
+      At line 35 in file main.s
+   Uses
+      At line 108 in file main.s
+Comment: GPIO_PORTF_DATA_R used once
+GPIO_PORTF_DEN_R 4002551C
+
+Symbol: GPIO_PORTF_DEN_R
+   Definitions
+      At line 39 in file main.s
+   Uses
+      At line 84 in file main.s
+Comment: GPIO_PORTF_DEN_R used once
+GPIO_PORTF_DIR_R 40025400
+
+Symbol: GPIO_PORTF_DIR_R
+   Definitions
+      At line 36 in file main.s
+   Uses
+      At line 79 in file main.s
+Comment: GPIO_PORTF_DIR_R used once
+GPIO_PORTF_LOCK_R 40025520
+
+Symbol: GPIO_PORTF_LOCK_R
+   Definitions
+      At line 40 in file main.s
+   Uses
+      None
+Comment: GPIO_PORTF_LOCK_R unused
+GPIO_PORTF_PUR_R 40025510
+
+Symbol: GPIO_PORTF_PUR_R
+   Definitions
+      At line 38 in file main.s
+   Uses
+      At line 89 in file main.s
+Comment: GPIO_PORTF_PUR_R used once
+SYSCTL_RCGCGPIO_R 400FE608
+
+Symbol: SYSCTL_RCGCGPIO_R
+   Definitions
+      At line 43 in file main.s
+   Uses
+      At line 60 in file main.s
+Comment: SYSCTL_RCGCGPIO_R used once
+13 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+TExaS_Init 00000000
+
+Symbol: TExaS_Init
+   Definitions
+      At line 45 in file main.s
+   Uses
+      At line 94 in file main.s
+Comment: TExaS_Init used once
+1 symbol
+368 symbols in table
