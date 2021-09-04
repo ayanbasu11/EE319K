@@ -1,4 +1,4 @@
-# EE319K
+# EE319K - Introduction to Embedded Systems | Spring 2021
 All class Lab Assignments and Homework Assignments in EE319K - Introduction to Embedded Systems
 from Spring 2021 Semester
 
